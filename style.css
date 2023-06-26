@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+:root {
+    --main-theme-color: lightgoldenrodyellow;
+    --main-theme-color-hovered: rgb(238, 238, 182);
+    --button-color: lightgray;
+    --darker-tone: gray;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 5em 1fr;
+}
+
+header {
+    background-color: var(--main-theme-color);
+    font-size: 1em;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-board {
+    height: 500px;
+    width: 500px;
+    border: solid 1px var(--darker-tone);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.game-board>div {
+    background-color: var(--main-theme-color);
+    border: solid 1px var(--darker-tone);
+}
+
+.game-board>div:hover {
+    background-color: var(--main-theme-color-hovered);
+    cursor: pointer;
+}
+
+.winner-window {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 50%);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.winner-container {
+    background-color: var(--main-theme-color);
+    font-size: 1.5em;
+    padding: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+button {
+    background-color: var(--button-color);
+    font-family: inherit;
+    font-size: inherit;   
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+}
+
+button:hover {
+    background-color: var(--darker-tone);
+    cursor: pointer;
+}
+
+/* JS */
+.invisible {
+    display: none;
+}
