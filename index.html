@@ -12,6 +12,20 @@
         <h1>Tic Tac Toe</h1>
     </header>
     <main>
+        <div class="player-window invisible">
+            <div class="player-container">
+                <form action="#">
+                    <p>Please, enter your names</p>
+                    <div>
+                        <label for="player-one">Player One</label>
+                        <input type="text" name="player-one" id="player-one">
+                        <label for="player-two">Player Two</label>
+                        <input type="text" name="player-two" id="player-two">
+                    </div>
+                    <button>Start Game</button>
+                </form>
+            </div>
+        </div>
         <div class="game-board">
             <div class="field" data-index="0">
                 <span class="ex invisible">X</span>
@@ -53,7 +67,7 @@
     </main>
     <div class="winner-window invisible">
         <div class="winner-container">
-            <p>'Symbol' is the winner!</p>
+            <p class="message">'Symbol' is the winner!</p>
             <p>Want to start a new game?</p>
             <button>New game</button>
         </div>

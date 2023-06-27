@@ -58,7 +58,7 @@ main {
     cursor: pointer;
 }
 
-.winner-window {
+.winner-window, .player-window {
     position: fixed;
     background-color: rgba(0, 0, 0, 50%);
     height: 100vh;
@@ -68,7 +68,7 @@ main {
     align-items: center;
 }
 
-.winner-container {
+.winner-container, .player-container {
     background-color: var(--main-theme-color);
     font-size: 1.5em;
     padding: 50px;
@@ -79,11 +79,41 @@ main {
     gap: 50px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+:focus {
+    outline: none;
+}
+
+form input[type="text"] {
+    font-family: inherit;
+    font-size: 0.9em;
+    padding: 0 5px;
+    height: 40px;
+    border: solid 1px var(--button-color);
+    border-radius: 10px;
+}
+
+form input[type="text"]:focus {
+    border: solid 1px var(--darker-tone);
+}
+
 button {
     background-color: var(--button-color);
     font-family: inherit;
     font-size: inherit;   
     padding: 10px 15px;
+    height: 55px;
     border-radius: 10px;
     border: none;
 }
