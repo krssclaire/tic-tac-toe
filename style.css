@@ -36,16 +36,21 @@ main {
 }
 
 .game-board {
-    height: 500px;
-    width: 500px;
+    height: 90vw;
+    width: 90vw;
     border: solid 1px var(--darker-tone);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 .game-board>div {
     background-color: var(--main-theme-color);
     border: solid 1px var(--darker-tone);
+    font-size: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .game-board>div:hover {
@@ -86,6 +91,17 @@ button {
 button:hover {
     background-color: var(--darker-tone);
     cursor: pointer;
+}
+
+/* Tablet & Desktop */
+@media screen and (min-width: 600px) {
+    .game-board {
+        height: 500px;
+        width: 500px;
+    }
+    .game-board>div {
+        font-size: 5em;
+    }
 }
 
 /* JS */
