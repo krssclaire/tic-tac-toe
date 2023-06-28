@@ -11,21 +11,21 @@
     <header>
         <h1>Tic Tac Toe</h1>
     </header>
-    <main>
-        <div class="player-window invisible">
-            <div class="player-container">
-                <form action="#">
-                    <p>Please, enter your names</p>
-                    <div>
-                        <label for="player-one">Player One</label>
-                        <input type="text" name="player-one" id="player-one">
-                        <label for="player-two">Player Two</label>
-                        <input type="text" name="player-two" id="player-two">
-                    </div>
-                    <button>Start Game</button>
-                </form>
-            </div>
+    <div class="player-window">
+        <div class="player-container">
+            <form action="#">
+                <p>Please, enter your names</p>
+                <div>
+                    <label for="player-x">Player X</label>
+                    <input type="text" name="player-x" id="player-x">
+                    <label for="player-o">Player O</label>
+                    <input type="text" name="player-o" id="player-o">
+                </div>
+                <button>Start Game</button>
+            </form>
         </div>
+    </div>
+    <main>
         <div class="game-board">
             <div class="field" data-index="0">
                 <span class="ex invisible">X</span>

@@ -10,14 +10,51 @@ const Gameboard = (() => {
 })();
 
 /*
-const playerOne = Player('X');
-const playerTwo = Player('O');
+Pseudo code
+
+Player { name, symbol }
+Gameboard { 
+    logical gameboard x DOM gameboard
+}
+
+game {
+    let input text;
+    let activePlayer = playerOne
+    let playerX, playerO, start btn;
+    starts onclick of 'Start game' button
+
+    game on turn {
+        toggle active player and make stuff happen on turn 
+    }
+
+    check winner / tie {
+        let winningCombo
+
+        if (winning combo) {
+            display winner message 
+            make winner window appear
+        } 
+    }
+}
+
+renderContent {
+
+    make windows appear / disappear
+
+    displayController {
+        addEvent listener on cells
+        users can play on turn
+        position os symbol based on gameboard indexes
+    }
+
+
+}
+
 */
 
-//const displayController = (() => { })();
-
 /*
-> Organization Scheme
+> Code Organization Scheme
+get players names -> game -> round results
 
 player
 gameboard
@@ -27,6 +64,4 @@ displayController -> on the right place of the grid on the DOM
 checkWin -> win / game over / tie
 input Players
 start/restart 
-
-
 */
