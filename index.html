@@ -11,17 +11,17 @@
     <header>
         <h1>Tic Tac Toe</h1>
     </header>
-    <div class="player-window">
+    <div class="player-window invisible">
         <div class="player-container">
-            <form action="#">
+            <form action="">
                 <p>Please, enter your names</p>
                 <div>
                     <label for="player-x">Player X</label>
-                    <input type="text" name="player-x" id="player-x">
+                    <input type="text" name="player-x" id="player-x" required>
                     <label for="player-o">Player O</label>
-                    <input type="text" name="player-o" id="player-o">
+                    <input type="text" name="player-o" id="player-o" required>
                 </div>
-                <button>Start Game</button>
+                <button id="start">Start Game</button>
             </form>
         </div>
     </div>
@@ -65,11 +65,11 @@
             </div>
         </div>
     </main>
-    <div class="winner-window invisible">
+    <div class="winner-window">
         <div class="winner-container">
             <p class="message">'Symbol' is the winner!</p>
             <p>Want to start a new game?</p>
-            <button>New game</button>
+            <button id="new-game">New game</button>
         </div>
     </div>
 </body>

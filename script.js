@@ -1,18 +1,61 @@
 const Player = (name, symbol) => {
-    const getName = () => name;
-    const getSymbol = () => symbol;
-    return { getName, getSymbol };
-}
+    const getName = () => {
+        if (name === '') {
+            return name = `Player ${symbol}`;
+        } else {
+            return name;
+        }
+    }
+    return { 
+        getName, 
+        symbol 
+    };
+};
+
+// Example
+const person = Player('ash', 'X');
+//console.log(person.getName());
+
+const displayWindows = (() => {
+    const form = document.querySelector('form');
+    const startBtn = document.querySelector('#start');
+    const playerWindow = document.querySelector('.player-window');
+    const newGameBtn = document.querySelector('#new-game');
+    const winnerWindow = document.querySelector('.winner-window');
+    
+    const hidePlayerWindow = () => playerWindow.style.display = 'none';
+    const showWinnerWindow = () => winnerWindow.classList.remove('invisible');
+    const hideWinnerWindow = () => winnerWindow.classList.add('invisible');
+    
+    startBtn,addEventListener('click', (e) => {
+        if(form.checkValidity()) {
+            e.preventDefault();
+            console.log('Player window hidden');
+            hidePlayerWindow();
+        }
+    });
+    newGameBtn.addEventListener('click', hideWinnerWindow);
+    
+    return {
+        hideWinnerWindow,
+        showWinnerWindow
+    }  
+})();
 
 const Gameboard = (() => {
-    let gameBoard = ['', '', '', '', '', '', '', '', ''];
-    return gameBoard;
+    let board = [
+        '', '', '', 
+        '', '', '', 
+        '', '', ''
+    ];
+    return { board };
 })();
+
+const gameFlow = (() => { })();
 
 /*
 Pseudo code
 
-Player { name, symbol }
 Gameboard { 
     logical gameboard x DOM gameboard
 }
@@ -20,8 +63,7 @@ Gameboard {
 game {
     let input text;
     let activePlayer = playerOne
-    let playerX, playerO, start btn;
-    starts onclick of 'Start game' button
+    let playerX, playerO;
 
     game on turn {
         toggle active player and make stuff happen on turn 
@@ -32,14 +74,19 @@ game {
 
         if (winning combo) {
             display winner message 
-            make winner window appear
-        } 
+        } else if (no cell is empty){
+            tie
+        }
+        make winner window appear
+    }
+
+    reset {
+        reset board
     }
 }
 
-renderContent {
+renderBoard {
 
-    make windows appear / disappear
 
     displayController {
         addEvent listener on cells
