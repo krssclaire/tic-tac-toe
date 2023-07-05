@@ -31,8 +31,17 @@ header {
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.message {
+    margin-bottom: 4em;
+}
+
+#turn-message {
+    font-size: 1.5em;
 }
 
 .game-board {

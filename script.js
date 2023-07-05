@@ -13,34 +13,8 @@ const Player = (name, symbol) => {
 };
 
 // Example
-const person = Player('ash', 'X');
+//const person = Player('ash', 'X');
 //console.log(person.getName());
-
-const displayWindows = (() => {
-    const form = document.querySelector('form');
-    const startBtn = document.querySelector('#start');
-    const playerWindow = document.querySelector('.player-window');
-    const newGameBtn = document.querySelector('#new-game');
-    const winnerWindow = document.querySelector('.winner-window');
-    
-    const hidePlayerWindow = () => playerWindow.style.display = 'none';
-    const showWinnerWindow = () => winnerWindow.classList.remove('invisible');
-    const hideWinnerWindow = () => winnerWindow.classList.add('invisible');
-    
-    startBtn,addEventListener('click', (e) => {
-        if(form.checkValidity()) {
-            e.preventDefault();
-            console.log('Player window hidden');
-            hidePlayerWindow();
-        }
-    });
-    newGameBtn.addEventListener('click', hideWinnerWindow);
-    
-    return {
-        hideWinnerWindow,
-        showWinnerWindow
-    }  
-})();
 
 const Gameboard = (() => {
     let board = [
@@ -51,7 +25,66 @@ const Gameboard = (() => {
     return { board };
 })();
 
-const gameFlow = (() => { })();
+const displayWindows = (() => {
+    const form = document.querySelector('form');
+    const startBtn = document.querySelector('#start');
+    const playerWindow = document.querySelector('.player-window');
+    const newGameBtn = document.querySelector('#new-game');
+    const winnerWindow = document.querySelector('.winner-window');
+    const playerXInput = document.querySelector('#player-x');
+    const playerOInput = document.querySelector('#player-o');
+    
+    const hidePlayerWindow = () => playerWindow.style.display = 'none';
+    const showWinnerWindow = () => winnerWindow.classList.remove('invisible');
+    const hideWinnerWindow = () => winnerWindow.classList.add('invisible');
+    const resetBoard = () => Gameboard.board = ['', '', '', '', '', '', '', '', ''];
+    const playerXName = () => playerXInput.value;
+    const playerOName = () => playerOInput.value;
+
+    startBtn,addEventListener('click', (e) => {
+        if(form.checkValidity()) {
+            e.preventDefault();
+            hidePlayerWindow();
+        }
+    });
+    newGameBtn.addEventListener('click', hideWinnerWindow);
+    
+    return {
+        hideWinnerWindow,
+        showWinnerWindow, 
+        resetBoard,
+        playerXName, 
+        playerOName
+    }  
+})();
+
+const gameFlow = (() => {
+    const cells = document.querySelectorAll('.field');
+    const playerX = Player(displayWindows.playerXName(), 'X');
+    const playerO = Player(displayWindows.playerOName(), 'O');
+    const winningCombos = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],    // Rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],    // Columns
+        [0, 4, 8], [2, 4, 6]                // Diagonals
+    ];
+    let activePlayer = playerX;
+    
+    const playerTurn = () => {
+        activePlayer === playerX ? activePlayer = playerO : activePlayer = playerX;
+    }
+
+    cells.forEach((cell, index) => {
+        cell.addEventListener('click', () => {
+            cell.textContent = activePlayer.symbol;
+            playerTurn();
+            Gameboard.board[index] = cell.textContent;
+            console.log(Gameboard.board);
+            console.log(activePlayer.symbol);
+        });
+    });
+
+    return { }
+})();
 
 /*
 Pseudo code
