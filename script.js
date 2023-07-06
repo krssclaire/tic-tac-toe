@@ -1,20 +1,6 @@
-const Player = (name, symbol) => {
-    const getName = () => {
-        if (name === '') {
-            return name = `Player ${symbol}`;
-        } else {
-            return name;
-        }
-    }
-    return { 
-        getName, 
-        symbol 
-    };
+const Player = (symbol) => {
+    return { symbol };
 };
-
-// Example
-//const person = Player('ash', 'X');
-//console.log(person.getName());
 
 const Gameboard = (() => {
     let board = [
@@ -25,6 +11,7 @@ const Gameboard = (() => {
     return { board };
 })();
 
+// Display players window and winner window
 const displayWindows = (() => {
     const form = document.querySelector('form');
     const startBtn = document.querySelector('#start');
@@ -37,7 +24,15 @@ const displayWindows = (() => {
     const hidePlayerWindow = () => playerWindow.style.display = 'none';
     const showWinnerWindow = () => winnerWindow.classList.remove('invisible');
     const hideWinnerWindow = () => winnerWindow.classList.add('invisible');
-    const resetBoard = () => Gameboard.board = ['', '', '', '', '', '', '', '', ''];
+    /*
+    const resetBoard = () => {
+        Gameboard.board = ['', '', '', '', '', '', '', '', ''];
+        gameFlow.cells.forEach(cell => cell.textContent = '');
+        gameFlow.freeSpots = 9;
+    };
+    */
+    const resetBoard = () => window.location.reload();
+
     const playerXName = () => playerXInput.value;
     const playerOName = () => playerOInput.value;
 
@@ -47,7 +42,10 @@ const displayWindows = (() => {
             hidePlayerWindow();
         }
     });
-    newGameBtn.addEventListener('click', hideWinnerWindow);
+    newGameBtn.addEventListener('click', () => {
+        hideWinnerWindow();
+        resetBoard();
+    });
     
     return {
         hideWinnerWindow,
@@ -59,31 +57,79 @@ const displayWindows = (() => {
 })();
 
 const gameFlow = (() => {
+    const turnMessage = document.querySelector('#turn-message');
+    const winnerMessage = document.querySelector('#winner-message');
     const cells = document.querySelectorAll('.field');
-    const playerX = Player(displayWindows.playerXName(), 'X');
-    const playerO = Player(displayWindows.playerOName(), 'O');
+    const playerX = Player('X');
+    const playerO = Player('O');
     const winningCombos = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],    // Rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8],    // Columns
         [0, 4, 8], [2, 4, 6]                // Diagonals
     ];
     let activePlayer = playerX;
+    let freeSpots = 9;
     
     const playerTurn = () => {
-        activePlayer === playerX ? activePlayer = playerO : activePlayer = playerX;
+        if (activePlayer === playerX) {
+            activePlayer = playerO;
+            turnMessage.textContent = `${displayWindows.playerOName()}'s turn`
+        } else  {
+            activePlayer = playerX;
+            turnMessage.textContent = `${displayWindows.playerXName()}'s turn`
+        }
+    };
+
+    const decreaseFreeSpots = () => freeSpots -=1;
+
+    const checkWinner = () => {
+        winningCombos.forEach(space => {
+            if (
+                Gameboard.board[space[0]] === activePlayer.symbol &&
+                Gameboard.board[space[1]] === activePlayer.symbol &&
+                Gameboard.board[space[2]] === activePlayer.symbol
+            ) {
+                console.log('we have a winner');
+                displayWindows.showWinnerWindow();
+                winnerMessage.textContent = 'we have a winner';
+            } else if (freeSpots == 0) {
+                displayWindows.showWinnerWindow();
+                winnerMessage.textContent = 'It is a tie!';
+            }
+        });
+    };
+
+    /*
+    check winner / tie {
+        let winningCombo
+
+        if (winning combo) {
+            display winner message 
+        } else if (no cell is empty){
+            tie
+        }
+        make winner window appear
     }
+    */
 
     cells.forEach((cell, index) => {
         cell.addEventListener('click', () => {
+            if (!cell.textContent == '') return;
             cell.textContent = activePlayer.symbol;
-            playerTurn();
+            console.log(activePlayer.symbol);
             Gameboard.board[index] = cell.textContent;
             console.log(Gameboard.board);
-            console.log(activePlayer.symbol);
+            decreaseFreeSpots();
+            console.log(`Free spots: ${freeSpots}`);
+            checkWinner();
+            playerTurn();
         });
     });
 
-    return { }
+    return { 
+        cells,
+        freeSpots
+    }
 })();
 
 /*
