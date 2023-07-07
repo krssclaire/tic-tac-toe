@@ -3,15 +3,10 @@ const Player = (symbol) => {
 };
 
 const Gameboard = (() => {
-    let board = [
-        '', '', '', 
-        '', '', '', 
-        '', '', ''
-    ];
+    let board = ['', '', '', '', '', '', '', '', ''];
     return { board };
 })();
 
-// Display players window and winner window
 const displayWindows = (() => {
     const form = document.querySelector('form');
     const startBtn = document.querySelector('#start');
@@ -24,15 +19,9 @@ const displayWindows = (() => {
     const hidePlayerWindow = () => playerWindow.style.display = 'none';
     const showWinnerWindow = () => winnerWindow.classList.remove('invisible');
     const hideWinnerWindow = () => winnerWindow.classList.add('invisible');
-    /*
-    const resetBoard = () => {
+    const resetVirtualBoard = () => {
         Gameboard.board = ['', '', '', '', '', '', '', '', ''];
-        gameFlow.cells.forEach(cell => cell.textContent = '');
-        gameFlow.freeSpots = 9;
     };
-    */
-    const resetBoard = () => window.location.reload();
-
     const playerXName = () => playerXInput.value;
     const playerOName = () => playerOInput.value;
 
@@ -44,13 +33,14 @@ const displayWindows = (() => {
     });
     newGameBtn.addEventListener('click', () => {
         hideWinnerWindow();
-        resetBoard();
+        resetVirtualBoard();
+        gameFlow.resetBoard();
     });
     
     return {
         hideWinnerWindow,
         showWinnerWindow, 
-        resetBoard,
+        resetVirtualBoard,
         playerXName, 
         playerOName
     }  
@@ -73,10 +63,10 @@ const gameFlow = (() => {
     const playerTurn = () => {
         if (activePlayer === playerX) {
             activePlayer = playerO;
-            turnMessage.textContent = `${displayWindows.playerOName()}'s turn`
+            turnMessage.textContent = `${displayWindows.playerOName()}'s turn`;
         } else  {
             activePlayer = playerX;
-            turnMessage.textContent = `${displayWindows.playerXName()}'s turn`
+            turnMessage.textContent = `${displayWindows.playerXName()}'s turn`;
         }
     };
 
@@ -91,7 +81,11 @@ const gameFlow = (() => {
             ) {
                 console.log('we have a winner');
                 displayWindows.showWinnerWindow();
-                winnerMessage.textContent = 'we have a winner';
+                if (activePlayer == playerX) {
+                    winnerMessage.textContent = `${displayWindows.playerXName()} is the winner`;
+                } else {
+                    winnerMessage.textContent = `${displayWindows.playerOName()} is the winner`;
+                }
             } else if (freeSpots == 0) {
                 displayWindows.showWinnerWindow();
                 winnerMessage.textContent = 'It is a tie!';
@@ -99,18 +93,12 @@ const gameFlow = (() => {
         });
     };
 
-    /*
-    check winner / tie {
-        let winningCombo
-
-        if (winning combo) {
-            display winner message 
-        } else if (no cell is empty){
-            tie
-        }
-        make winner window appear
+    const resetBoard = () => {
+        cells.forEach(cell => cell.textContent = '');
+        freeSpots = 9;
+        activePlayer = playerX;
+        turnMessage.textContent = `${displayWindows.playerXName()}'s turn`;
     }
-    */
 
     cells.forEach((cell, index) => {
         cell.addEventListener('click', () => {
@@ -128,66 +116,6 @@ const gameFlow = (() => {
 
     return { 
         cells,
-        freeSpots
+        resetBoard
     }
 })();
-
-/*
-Pseudo code
-
-Gameboard { 
-    logical gameboard x DOM gameboard
-}
-
-game {
-    let input text;
-    let activePlayer = playerOne
-    let playerX, playerO;
-
-    game on turn {
-        toggle active player and make stuff happen on turn 
-    }
-
-    check winner / tie {
-        let winningCombo
-
-        if (winning combo) {
-            display winner message 
-        } else if (no cell is empty){
-            tie
-        }
-        make winner window appear
-    }
-
-    reset {
-        reset board
-    }
-}
-
-renderBoard {
-
-
-    displayController {
-        addEvent listener on cells
-        users can play on turn
-        position os symbol based on gameboard indexes
-    }
-
-
-}
-
-*/
-
-/*
-> Code Organization Scheme
-get players names -> game -> round results
-
-player
-gameboard
-renderContent -> from array to webpage
-displayController -> on the right place of the grid on the DOM
-                    Note: no places already taken
-checkWin -> win / game over / tie
-input Players
-start/restart 
-*/
