@@ -1,14 +1,14 @@
 # Tic Tac Toe
 
 Simple two-players game Tic Tac Toe. <br> 
-Live demo: **Tic Tac Toe** (preview still unavailable)
+Live demo: [Tic Tac Toe](https://krssclaire.github.io/tic-tac-toe/)
 
 
 ## Technologies used
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)  
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)    
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 
 ## Tools used
@@ -21,12 +21,14 @@ Live demo: **Tic Tac Toe** (preview still unavailable)
 
 ## Features
 
-* Responsive design for all main devices (Desktop, Tablet and Mobile).
+* Responsive design for all main devices (Desktop, Tablet and Mobile)
+* The players can add their names for personalized messages
 
 
 ## What I learned
 
-* Module and Factory Functions use
+* Modules
+* Factory Functions
 
 
 ## Acknowledgments
