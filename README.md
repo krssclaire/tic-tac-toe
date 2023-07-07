@@ -21,8 +21,12 @@ Live demo: [Tic Tac Toe](https://krssclaire.github.io/tic-tac-toe/)
 
 ## Features
 
-* Responsive design for all main devices (Desktop, Tablet and Mobile)
-* The players can add their names for personalized messages
+* About the design:
+    * It is responsive for all main devices (Desktop, Tablet and Mobile) 
+    * Mobile First design approach
+* About the game:
+    * The players can add their names for personalized messages
+    * A "new game" window appears every time there is a winner or a tie
 
 
 ## What I learned
@@ -34,3 +38,4 @@ Live demo: [Tic Tac Toe](https://krssclaire.github.io/tic-tac-toe/)
 ## Acknowledgments
 
 * Inspired by [The Odin Project](https://www.theodinproject.com/) second project of the JavaScript Course of the Fullstack JavaScript Path
+* Tic Tac Toe favicon by [Peter Lakenbrink](https://www.flaticon.com/free-icons/tic-tac-toe) on Flaticon

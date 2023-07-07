@@ -79,25 +79,26 @@ main {
 
 .winner-container, .player-container {
     background-color: var(--main-theme-color);
-    font-size: 1.5em;
-    padding: 50px;
+    font-size: 1.35em;
+    padding: 40px;
+    max-width: 350px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 40px;
 }
 
 form>div {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 :focus {
@@ -106,7 +107,7 @@ form>div {
 
 form input[type="text"] {
     font-family: inherit;
-    font-size: 0.9em;
+    font-size: inherit;
     padding: 0 5px;
     height: 40px;
     border: solid 1px var(--button-color);
@@ -140,6 +141,18 @@ button:hover {
     }
     .game-board>div {
         font-size: 5em;
+    }
+    .winner-container, .player-container {
+        font-size: 1.5em;
+        padding: 50px;
+        max-width: 400px;
+        gap: 50px;
+    }
+    form {
+        gap: 50px;
+    }
+    form>div {
+        gap: 20px;
     }
 }
 

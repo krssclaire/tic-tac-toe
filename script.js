@@ -19,9 +19,7 @@ const displayWindows = (() => {
     const hidePlayerWindow = () => playerWindow.style.display = 'none';
     const showWinnerWindow = () => winnerWindow.classList.remove('invisible');
     const hideWinnerWindow = () => winnerWindow.classList.add('invisible');
-    const resetVirtualBoard = () => {
-        Gameboard.board = ['', '', '', '', '', '', '', '', ''];
-    };
+    const resetVirtualBoard = () => Gameboard.board = ['', '', '', '', '', '', '', '', ''];
     const playerXName = () => playerXInput.value;
     const playerOName = () => playerOInput.value;
 
@@ -34,7 +32,7 @@ const displayWindows = (() => {
     newGameBtn.addEventListener('click', () => {
         hideWinnerWindow();
         resetVirtualBoard();
-        gameFlow.resetBoard();
+        gameFlow.resetBoardData();
     });
     
     return {
@@ -59,9 +57,13 @@ const gameFlow = (() => {
     ];
     let activePlayer = playerX;
     let freeSpots = 9;
+    let win = false;
     
     const playerTurn = () => {
-        if (activePlayer === playerX) {
+        if (win) {
+            win = false;
+            return;
+        } else if (activePlayer === playerX) {
             activePlayer = playerO;
             turnMessage.textContent = `${displayWindows.playerOName()}'s turn`;
         } else  {
@@ -79,13 +81,13 @@ const gameFlow = (() => {
                 Gameboard.board[space[1]] === activePlayer.symbol &&
                 Gameboard.board[space[2]] === activePlayer.symbol
             ) {
-                console.log('we have a winner');
                 displayWindows.showWinnerWindow();
                 if (activePlayer == playerX) {
                     winnerMessage.textContent = `${displayWindows.playerXName()} is the winner`;
                 } else {
                     winnerMessage.textContent = `${displayWindows.playerOName()} is the winner`;
                 }
+                win = true;
             } else if (freeSpots == 0) {
                 displayWindows.showWinnerWindow();
                 winnerMessage.textContent = 'It is a tie!';
@@ -93,18 +95,19 @@ const gameFlow = (() => {
         });
     };
 
-    const resetBoard = () => {
+    const resetBoardData = () => {
         cells.forEach(cell => cell.textContent = '');
         freeSpots = 9;
         activePlayer = playerX;
-        turnMessage.textContent = `${displayWindows.playerXName()}'s turn`;
+        initialTurnMessage();
     }
+
+    const initialTurnMessage = () => turnMessage.textContent = `${displayWindows.playerXName()}'s turn`;
 
     cells.forEach((cell, index) => {
         cell.addEventListener('click', () => {
             if (!cell.textContent == '') return;
             cell.textContent = activePlayer.symbol;
-            console.log(activePlayer.symbol);
             Gameboard.board[index] = cell.textContent;
             console.log(Gameboard.board);
             decreaseFreeSpots();
@@ -116,6 +119,6 @@ const gameFlow = (() => {
 
     return { 
         cells,
-        resetBoard
+        resetBoardData
     }
 })();
