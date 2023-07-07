@@ -31,11 +31,11 @@ Live demo: [Tic Tac Toe](https://krssclaire.github.io/tic-tac-toe/)
 
 ## What I learned
 
-* Modules
+* Module pattern
 * Factory Functions
 
 
 ## Acknowledgments
 
 * Inspired by [The Odin Project](https://www.theodinproject.com/) second project of the JavaScript Course of the Fullstack JavaScript Path
-* Tic Tac Toe favicon by [Peter Lakenbrink](https://www.flaticon.com/free-icons/tic-tac-toe) on Flaticon
+* Tic Tac Toe favicon by [Freepik](https://www.flaticon.com/free-icons/tic-tac-toe)- Flatico
